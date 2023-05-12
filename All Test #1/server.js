@@ -3,7 +3,7 @@ const express = require("express");
 
 const NodeCache = require("node-cache");
 
-const myCache = new NodeCache({stdTTL: 10}); 
+const myCache = new NodeCache({stdTTL: 10}); // no proof via browser
 
 const app = express();
 const PORT = 3000;
