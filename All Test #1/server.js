@@ -1,5 +1,7 @@
+//NOTE: ejs is installed but not used - was testing
+
 const express = require("express");
-//const fetch = require("node-fetch");
+const path = require("path");
 
 const NodeCache = require("node-cache");
 
@@ -8,29 +10,33 @@ const myCache = new NodeCache({stdTTL: 10}); // no proof via browser
 const app = express();
 const PORT = 3000;
 
+app.use(express.urlencoded({extended: true})); //middleware that lets us get data from pages
+
+app.set("view engine", "ejs");
+
+//Homepage
 app.get("/", (req, res) => {
-    // res.send("Hello World");
+    //res.sendFile(__dirname + "/views/homepage.html", {text: "hi"});
+    res.render("homepage", {text: "HELLO!"});
 });
 
-app.get("/textfile", (req, res) => {
-    if (myCache.has("textfile")){
-        console.log("getting from cache");
-        return res.sendFile(myCache.get("textfile"));
-    } else {
-        console.log("getting from server");
-        let filePath = __dirname + "/textfile.txt";
-        myCache.set("textfile", __dirname + "/textfile.txt");
-        res.sendFile(filePath);
-    }
+//Add user data
+app.get("/add-data", (req, res) => {
+
+}); 
+
+//show user data and allow deletion
+app.get("/user-data", (req, res) => {
+
 });
 
-app.get("/stats", (req, res) => {       //FOR TESTING, DEL LATER
+app.get("/cache-stats", (req, res) => {       //FOR TESTING, DEL LATER
     return res.send(myCache.getStats());
 });
 
 app.listen(PORT, () => {
     console.log(`Cache Test #1 is running on port ${PORT}.`);
-    console.log(`Test this at ${"http://localhost:3000"}`);
-    console.log(`or  ${"http://localhost:3000/textfile"}`);
-    console.log(`or  ${"http://localhost:3000/stats"}`);
+    console.log(`Test this at http://localhost:${PORT}`);
+    console.log(`or  http://localhost:${PORT}/add-data`);
+    console.log(`or  http://localhost:${PORT}/user-data`);
 });
