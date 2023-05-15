@@ -49,9 +49,10 @@ app.get("/view-data", (req, res) => {
             console.error(err);
             return;
         }
-        //res.send(data);
         res.render("datapage", {data: data});
     });
+    res.end();
+    console.log("1");
 });
 
 app.get("/cache-stats", (req, res) => {       //FOR TESTING, DEL LATER
