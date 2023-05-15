@@ -1,5 +1,7 @@
 //NOTE: ejs is installed but not used - was testing
 
+const fs = require("fs");
+
 const express = require("express");
 const path = require("path");
 
@@ -16,18 +18,38 @@ app.set("view engine", "ejs");
 
 //Homepage
 app.get("/", (req, res) => {
-    //res.sendFile(__dirname + "/views/homepage.html", {text: "hi"});
     res.render("homepage", {text: "HELLO!"});
 });
 
 //Add user data
 app.get("/add-data", (req, res) => {
+    res.render("add-data");
+}); 
 
+app.post("/add-data", (req, res) => {
+    const newData = req.body.newData + "\n";
+
+    console.log("Added: " + newData); //FOR TESTING, DELETE LATER
+
+    fs.appendFile("database.txt", newData, err => {
+        if(err){
+            console.err;
+            return;
+        }
+    })
+    //res.redirect('/user-data');
+    res.end("post req ended!");
 }); 
 
 //show user data and allow deletion
 app.get("/user-data", (req, res) => {
-
+    fs.readFile("database.txt", "utf8", (err, data) => {
+        if (err){
+            console.error(err);
+            return;
+        }
+        res.send(data);
+    });
 });
 
 app.get("/cache-stats", (req, res) => {       //FOR TESTING, DEL LATER
