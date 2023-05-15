@@ -8,13 +8,21 @@
 <body>
     <div class="container">
         <div class="wrapper">
-            Enter Song Name: <input type="text" id="song" />
-            <button id="submit_button" style="margin-bottom: 50px;">Submit</button>
+            <div class="text">This is All Test #1</div>
+            &nbsp;
+            <div class="text">Enter things at /add-data</div> 
+            <form action="/add-data" method="get">
+                <button type="submit">Add Data</button>
+            </form>
+            &nbsp;
+            <div class="text">View and Delete them at /view-data</div>
+            <form action="/view-data" method="get">
+                <button type="submit">View Data</button>
+            </form>
         </div>
-        <div id="songStuff"></div>
     </div>
-    Passed Text: <%= text %>
-    <!-- <script src="js/script.js"></script> -->
+    <!-- Passed Text: <%= locals.text %> -->
+
 </body>
 
 </html>

@@ -37,18 +37,20 @@ app.post("/add-data", (req, res) => {
             return;
         }
     })
-    //res.redirect('/user-data');
-    res.end("post req ended!");
+    //res.redirect('/view-data');
+    //res.end("post req ended!");
+    res.render("add-data", {text: "Added: " + newData});
 }); 
 
 //show user data and allow deletion
-app.get("/user-data", (req, res) => {
+app.get("/view-data", (req, res) => {
     fs.readFile("database.txt", "utf8", (err, data) => {
         if (err){
             console.error(err);
             return;
         }
-        res.send(data);
+        //res.send(data);
+        res.render("datapage", {data: data});
     });
 });
 
@@ -60,5 +62,6 @@ app.listen(PORT, () => {
     console.log(`Cache Test #1 is running on port ${PORT}.`);
     console.log(`Test this at http://localhost:${PORT}`);
     console.log(`or  http://localhost:${PORT}/add-data`);
-    console.log(`or  http://localhost:${PORT}/user-data`);
+    console.log(`or  http://localhost:${PORT}/view-data
+    `);
 });

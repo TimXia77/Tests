@@ -13,7 +13,17 @@
         </div>
         <button type="submit">Add new Data</button>
     </form>
-    <div id = "addedText"></div>
+    <%= locals.text %>
+
+    &nbsp;
+    <div class="text"> Other options:</div>
+
+    <form action="/" method="get">
+        <button type="submit">Back to Home</button>
+    </form>
+    <form action="/view-data" method="get">
+        <button type="submit">View Data</button>
+    </form>
 </body>
 
 </html>
