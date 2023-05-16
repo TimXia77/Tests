@@ -1,24 +1,16 @@
-//NOTE: ejs is installed but not used - was testing
+
+
 const server = require('http');
-
 const fs = require("fs");
-
 const express = require("express");
 const path = require("path");
-
 const NodeCache = require("node-cache");
-
-const myCache = new NodeCache({stdTTL: 10}); // no proof via browser
-
-const io = require('socket.io')(server)
-
+const myCache = new NodeCache({stdTTL: 10}); 
 const app = express();
 const PORT = 3000;
 
 app.use(express.urlencoded({extended: true})); //middleware that lets us get data from pages
-
 app.set("view engine", "ejs");
-
 app.use(express.static(__dirname));
 
 //Homepage
@@ -71,6 +63,32 @@ app.post("/view-data", (req, res)=> {
             return;
         }
         res.json(data);
+    });
+});
+
+app.delete("/view-data", (req, res) => {
+    console.log("delete request received!");
+    console.log(req.query.target); //whats to be deleted
+    let dataArr = [];
+
+    fs.readFile("database.txt", "utf8", (err, data) => {
+        if (err){
+            console.error(err);
+            return;
+        }
+
+        dataArr = data.split(" ");
+
+        dataArr.splice(dataArr.indexOf(req.query.target),1);
+
+        let dataString = dataArr.join(' ');
+        fs.writeFile("database.txt", dataString, err => {
+            if (err){
+                console.error(err);
+                console.log("error occured when updating database textfile");
+                return;
+            }
+        });
     });
 });
 
