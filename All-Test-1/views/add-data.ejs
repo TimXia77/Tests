@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Data</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <form action="/add-data" method = "POST">
+            <h1>Adding Data</h1>
+            <div class="container">
+                <div class="text">Enter a new data value:</div>
+                <input type = "text" name ="newData" id="newData"/><button type="submit">Add new Data</button> <%= locals.addedData %>
+            </div>
+    
+        </form>
+        
+        &nbsp;
+        <div class="text"> Other options:</div>
+    
+        <form action="/" method="get">
+            <button type="submit">Back to Home</button>
+        </form>
+        <form action="/view-data" method="get">
+            <button type="submit">View Data</button>
+        </form>
+    </div>
+</body>
+
+</html>

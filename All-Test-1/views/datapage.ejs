@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Datapage</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <h1>Stored Data</h1> 
+            &nbsp;
+            <div class="text">Current Data: <%= locals.data %></div> 
+            <table class="wb-tables table table-striped table-hover" id="dataTable" data-wb-tables='{ "ordering" : false }'>
+                <thead>
+                    <tr>
+                        <th>ID:</th>
+                        <th>Data: </th>
+                    </tr>
+                </thead>
+                <tbody >
+                    <tr>
+                        <td>1</td>
+                        <td>1asd</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>asd</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            &nbsp;
+            <div class="text"> Other options:</div>
+        
+            <form action="/" method="get">
+                <button type="submit">Back to Home</button>
+            </form>
+            <form action="/add-data" method="get">
+                <button type="submit">Add Data</button>
+            </form>
+        </div>
+    </div>
+    <script src='/scripts/datapage.js'></script>
+
+</body>
+
+</html>
