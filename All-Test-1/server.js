@@ -30,22 +30,27 @@ app.get("/", (req, res) => {
 app.get("/add-data", (req, res) => {
     if (req.query.added != undefined){
         res.render("add-data", {addedData: "Added: " + req.query.added});
+    } else {
+        res.render("add-data");
     }
-    res.render("add-data");
 }); 
 
 app.post("/add-data", (req, res) => {
-    const newData = req.body.newData + "\n";
+    if ((req.body.newData).trim() == ""){
+        res.redirect("/add-data");
+    } else {
+        const newData = (req.body.newData).trim() + ":";
 
-    console.log("Added: " + newData); //FOR TESTING, DELETE LATER
-
-    fs.appendFile("database.txt", newData, err => {
-        if(err){
-            console.err;
-            return;
-        }
-    })
-    res.redirect('/add-data/?added=' + newData);
+        console.log("Added: " + newData); //FOR TESTING, DELETE LATER
+    
+        fs.appendFile("database.txt", newData, err => {
+            if(err){
+                console.err;
+                return;
+            }
+        })
+        res.redirect('/add-data/?added=' + newData.slice(0,newData.length-1));
+    }
 }); 
 
 //show user data and allow deletion
@@ -55,11 +60,17 @@ app.get("/view-data", (req, res) => {
             console.error(err);
             return;
         }
-        // io.emit("serverMsg", "hi");
-        // io.on('connection', function(socket) {
-        //     socket.emit("serverMsg", "hi");
-        // });
         res.render("datapage", {data: data});
+    });
+});
+
+app.post("/view-data", (req, res)=> {
+    fs.readFile("database.txt", "utf8", (err, data) => {
+        if (err){
+            console.error(err);
+            return;
+        }
+        res.json(data);
     });
 });
 
