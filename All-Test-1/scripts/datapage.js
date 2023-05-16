@@ -1,20 +1,4 @@
-// fetch('/view-data', {
-//     method: 'POST',
-//     headers: {
-//         'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(userRequestObj),
-// })
-// .then((response) => response.json())
-// .then((userRequestObj) => {
-//     //process the data here
-//     console.log(userRequestObj);
-//     console.log(JSON.stringify(userRequestObj));
-//     console.log("hi");
-// })
-// .catch((error) => {
-//     console.error('Error:', error);
-// })
+let dataArr = [];
 
 fetch("/view-data", {
     method: 'POST'
@@ -23,23 +7,32 @@ fetch("/view-data", {
 .then(data => {
     console.log("This is the data: " + data);
 
-    // Find a <table> element with id="myTable":
-    var table = document.getElementById("dataTable");
+    //process the data to arr:
+    dataArr = (data.trim()).split(" ");
 
-    // Create an empty <tr> element and add it to the 1st position of the table:
-    var row = table.insertRow(1);
+    let dataTable = document.getElementById("dataTable");
 
-    // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
+    //Set table values
+    for (let i = 0; i < dataArr.length; ++i){
+        let row = dataTable.insertRow(i);
 
-    // Add some text to the new cells:
-    cell1.innerHTML = "NEW CELL1";
-    cell2.innerHTML = "NEW CELL2";
-    console.log("hi");
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        cell1.innerHTML = i+1;
+        cell2.innerHTML = dataArr[i];
+    }
+
+    let row = dataTable.insertRow(0);
+
+    let cell1 = row.insertCell(0);
+    let cell2 = row.insertCell(1);
+    cell1.innerHTML = "<h4>ID:</h4>";
+    cell2.innerHTML = "<h4>Data:</h4>";
 
 })
 .catch(error => {
     console.log("ERROR: " + error);
 })
 
+
+console.log(dataArr[3-1]);

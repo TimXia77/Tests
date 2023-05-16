@@ -39,7 +39,7 @@ app.post("/add-data", (req, res) => {
     if ((req.body.newData).trim() == ""){
         res.redirect("/add-data");
     } else {
-        const newData = (req.body.newData).trim() + ":";
+        const newData = (req.body.newData).trim() + " ";
 
         console.log("Added: " + newData); //FOR TESTING, DELETE LATER
     
@@ -60,7 +60,7 @@ app.get("/view-data", (req, res) => {
             console.error(err);
             return;
         }
-        res.render("datapage", {data: data});
+        res.render("datapage");
     });
 });
 
