@@ -5,7 +5,6 @@ fetch("/view-data", {
 })
 .then(res => (res).json())
 .then(data => {
-    console.log("This is the data: " + data);
 
     if (data.trim() != ""){
         //process the data to arr:
@@ -37,8 +36,10 @@ fetch("/view-data", {
     console.log("ERROR: " + error);
 })
 
+
+//Event Listeners
 function deleteData(){
-    let deletionTextbox = document.getElementById('deleteText')
+    let deletionTextbox = document.getElementById('deleteText');
     let deletionIndex = deletionTextbox.value.trim(); 
 
     if (deletionIndex-1 < 0 || deletionIndex-1 >= dataArr.length || isNaN(deletionIndex) || deletionIndex == ""){

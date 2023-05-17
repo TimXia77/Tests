@@ -8,16 +8,13 @@
 
 <body>
     <div class="container">
-        <form action="/add-data" method = "POST">
-            <h1>Adding Data</h1>
-            &nbsp;
-            <div class="container">
-                <div class="text">Enter a new data value:</div>
-                <input type = "text" name ="newData" id="newData"/>
-                <button type="submit">Add new Data</button> <%= locals.addedData %>
-            </div>
-    
-        </form>
+        <h1>Adding Data</h1>
+        &nbsp;
+        <div class="container">
+            <div class="text">Enter a new data value:</div>
+            <input type = "text" name ="newData" id="newData"/>
+            <button type="submit" id="addData">Add new Data</button> <%= locals.addedData %>
+        </div>
         
         &nbsp;
         <div class="text"> Other options:</div>
@@ -29,6 +26,8 @@
             <button type="submit">View Data</button>
         </form>
     </div>
+    <script src='/scripts/add-data.js'></script>
+
 </body>
 
 </html>
