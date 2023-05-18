@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Datapage</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/wet-boew/css/theme.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <h1>Stored Data</h1> 
+            &nbsp;
+            <table class="wb-tables table table-striped table-hover" id="dataTable" data-wb-tables='{ "ordering" : false }'>
+                <thead>
+                </thead>
+                <tbody >
+                </tbody>
+            </table>
+
+            Enter an ID to delete:
+            <div>
+                <input type = "text" name ="deleteText" id="deleteText"/>
+                <button type="submit" id="deleteData">Delete Data</button>
+            </div>
+            <div class="text" id = invalidIndex></div>
+
+            &nbsp;
+            <div class="text"> Other options:</div>
+        
+            <form action="/" method="get">
+                <button type="submit">Back to Home</button>
+            </form>
+            <form action="/add-data" method="get">
+                <button type="submit">Add Data</button>
+            </form>
+        </div>
+    </div>
+    <script src='/scripts/datapage.js'></script>
+
+</body>
+
+</html>
