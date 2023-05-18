@@ -1,19 +1,20 @@
 const server = require('http');
-const fs = require("fs");
+var path = require('path');
 const express = require("express");
 const app = express();
 const PORT = 3000;
 
-const cache = require("./cache.js");
-const dataLayer = require("./data.js");
+const cache = require("./server/cache.js");
+const dataLayer = require("./server/data.js");
 
 app.use(express.urlencoded({extended: true})); 
 app.set("view engine", "ejs");
-app.use(express.static(__dirname));
+//app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, 'views')));
 
 //Routes for Homepage:
 app.get("/", cache(5), (req, res) => {
-    res.render("homepage", {text: "HELLO!"});
+    res.render("homepage");
 });
 
 
