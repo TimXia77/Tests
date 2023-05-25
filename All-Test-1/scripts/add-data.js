@@ -11,14 +11,18 @@ function addData(){
         .then(response => {
             if (response.ok) {
                 console.log("Added successfully");
+                document.getElementById('addStatus').innerHTML = "Added: " + newValue;
             } else {
                 console.error("Failed to add value");
+                document.getElementById('addStatus').innerHTML = "Could not add value";
             }
         })
         .catch(error => {
             console.error('Error:', error);
         });
         document.getElementById('newData').value = "";
+    } else {
+        document.getElementById('addStatus').innerHTML = "Please enter a value";
     }
 }
 

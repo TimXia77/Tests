@@ -13,7 +13,11 @@
         <div class="container">
             <div class="text">Enter a new data value:</div>
             <input type = "text" name ="newData" id="newData"/>
-            <button type="submit" id="addData">Add new Data</button> <%= locals.addedData %>
+            <div white-space: nowrap;>
+                <button type="submit" id="addData">Add new Data</button>
+                <div class="text" id = addStatus></div>
+
+            </div>
         </div>
         
         &nbsp;

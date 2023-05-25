@@ -15,8 +15,13 @@ app.use(express.static(__dirname)); //load scripts
 //Routes for Homepage:
 app.get("/", (req, res) => {
     // res.sendFile(__dirname + '/homepage.html', {text: "HELLO!"});
-    res.sendFile(__dirname + '/headerAndFooter.html', {text: "HELLO!"});
+    //res.sendFile(__dirname + '/landingPage.html', {text: "HELLO!"});
     // res.sendFile(__dirname + '/landingPage.html', {text: "HELLO!"});
+    res.sendFile(__dirname + '/tableTest.html');
+});
+
+app.get("/test", (req, res) => {
+    res.sendFile(__dirname + '/test.html');
 });
 
 app.listen(PORT, () => {

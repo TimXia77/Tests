@@ -29,7 +29,6 @@ fetch("/view-data", {
     let cell2 = row.insertCell(1);
     cell1.innerHTML = "<h4>ID:</h4>";
     cell2.innerHTML = "<h4>Data:</h4>";
-
     
 })
 .catch(error => {

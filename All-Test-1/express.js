@@ -29,7 +29,7 @@ app.get("/add-data", cache(5), (req, res) => {
 app.post("/add-data", (req, res) => {
     const newData = req.query.new + " ";
     dataLayer.addData(newData);
-    res.redirect('/add-data/?added=' + newData.slice(0,newData.length-1));
+    res.redirect('/add-data');
 }); 
 
 
