@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
 		wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-    <title>Table Test</title>
+    <title>AJAX Test</title>
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta name="description" content=" " />
     <link href="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/assets/favicon.ico" rel="icon" type="image/x-icon" />
@@ -156,11 +156,12 @@
 
 
         <!-- content -->
-        <section data-ajax-after="ajax/data-ajax-extra-en.html" class="original">
-            <h4>Hello World</h4>
+        <div data-ajax-append="ajax/data-ajax-extra-en.html" class="original">
             <p>Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text. Example text.</p>
-        </section>
-
+        </div>
+        <div data-ajax-append="ajax/data-ajax-extra-2-en.html" class="original">
+            <p>Different example text. Different example text. Different example text. Different example text. Different example text. Different example text.</p>
+        </div>
 
         
 
@@ -246,7 +247,7 @@
     <script src="https://wet-boew.github.io/themes-dist/GCWeb/wet-boew/js/wet-boew.min.js"></script>
     <script src="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/js/theme.min.js"></script>
 
-    <script src='/login.js'></script>
+    <script src='/ajax.js'></script>
 </body>
 
 </html>
