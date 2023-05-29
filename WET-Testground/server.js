@@ -18,6 +18,7 @@ app.get("/", (req, res) => {
     //res.sendFile(__dirname + '/landingPage.html', {text: "HELLO!"});
     // res.sendFile(__dirname + '/landingPage.html', {text: "HELLO!"});
     res.sendFile(__dirname + '/tableTest.html');
+    
 });
 
 app.get("/test", (req, res) => {

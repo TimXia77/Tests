@@ -1,6 +1,6 @@
-$(document).ready(function () {
-    $('#testTable').DataTable({
-        ajax: 'data/arrays.txt',
-    });
-});
+// $(document).ready(function () {
+//     $('#testTable').DataTable({
+//         ajax: 'data/arrays.txt',
+//     });
+// });
 

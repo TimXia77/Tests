@@ -3,10 +3,14 @@ const fs = require("fs");
 const express = require("express");
 const app = express();
 const PORT = 3000;
+const bodyParser = require('body-parser'); //parse body of post req
 
 const cache = require("./cache.js");
 const dataLayer = require("./data.js");
 
+// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.urlencoded({extended: true})); 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname));
@@ -27,8 +31,9 @@ app.get("/add-data", cache(5), (req, res) => {
 }); 
 
 app.post("/add-data", (req, res) => {
-    const newData = req.query.new + " ";
+    const newData = (JSON.stringify(req.body.addedValue) + " ").replaceAll('"','');
     dataLayer.addData(newData);
+    
     res.redirect('/add-data');
 }); 
 

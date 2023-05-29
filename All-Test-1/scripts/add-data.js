@@ -2,11 +2,16 @@
 //Event Listeners
 
 function addData(){
-    let newValue = document.getElementById('newData').value.trim();
+    let newValue = document.getElementById('newData').value.trim()
+    let reqObj = {addedValue: newValue};
 
     if (newValue != ""){
-        fetch(`/add-data/?new=${newValue}`, {
+        fetch(`/add-data`, { //use body here instead
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(reqObj)
         })
         .then(response => {
             if (response.ok) {
