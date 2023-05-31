@@ -2,7 +2,7 @@
 const fs = require("fs");
 
 function addData(newData){
-    fs.appendFile("database.txt", newData, err => {
+    fs.appendFile("../database.txt", newData, err => {
         if(err){
             console.err;
             return;
@@ -11,11 +11,11 @@ function addData(newData){
 }
 
 function readData(){
-    return fs.readFileSync('database.txt','utf8');
+    return fs.readFileSync('../database.txt','utf8');
 }
 
 function writeData(dataString){
-    fs.writeFile("database.txt", dataString, err => {
+    fs.writeFile("../database.txt", dataString, err => {
         if (err){
             console.error(err);
             console.log("error occured when updating database textfile");
