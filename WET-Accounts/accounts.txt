@@ -1,1 +1,1 @@
-{"email":"exampleHere@gmail.com","username":"TimXia123","password":"$2b$10$h11mamZWjZm5VdF7QIDHv.Ks2/xjgFm.ptCOIVnuMFcva.7OjFDay"}, {"email":"AnotherGmail@gmail.com","username":"TimXia77","password":"$2b$10$QxR4DoS.ce47HJ87ZEtBO.e9eTDXjpnkHw34P6ldI6Lk6EgneNkQG"}
+{"email":"timtest@gmail.com","username":"TimXia77","password":"$2b$10$cgag09ROPGCojJU8HmdnyeE8btH8lPTNNycBgrXNLnomsEfv60.PS","role":"basic"}

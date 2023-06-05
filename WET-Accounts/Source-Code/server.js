@@ -40,14 +40,25 @@ cookieJwtAuth = (req, res, next) => {
 checkLogin = (req, res, next) => {
     const token = req.cookies.token;
 
-    if (token != undefined){ //if the user has logged in
+    if (token != undefined) { //if the user has logged in
         return res.redirect("/table");
     }
-
     next();
-
 }
 
+function authRole(role) {
+    return (req, res, next) => {
+        const dataArr = JSON.parse(`[${dataLayer.readData()}]`); //array with user information
+        const targetUser = dataArr.find(user => user.username === req.user.username);
+
+        if (targetUser.role !== role) {
+            res.status(401)
+            return res.send('Not allowed')
+        }
+
+        next()
+    }
+}
 
 
 //Routes
@@ -57,20 +68,20 @@ app.get(registerPage, checkLogin, (req, res) => {
     res.sendFile(__dirname + '/register-en.html');
 });
 
-app.post(registerPage, async (req, res) => {
+app.post(registerPage, async (req, res) => { //creates basic accounts 
     const dataArr = JSON.parse(`[${dataLayer.readData()}]`); //array with user information
     const targetUser = dataArr.find(user => user.username === req.body.username1);
-    if (targetUser){ //user with that username already exists
+    if (targetUser) { //user with that username already exists
         res.send("Username already taken!")
 
     } else {
         try {
             const hashedPassword = await bcrypt.hash(req.body.password1, 10); //salt is saved with the hashed password automatically
-            const user = JSON.stringify({ email: req.body.email1, username: req.body.username1, password: hashedPassword });
+            const user = JSON.stringify({ email: req.body.email1, username: req.body.username1, password: hashedPassword, role: "basic" });
             console.log("\nRegistry information (w/hashed): " + user);
-    
+
             dataLayer.addData(user);
-    
+
             res.status(201).send("Registered!");
         } catch {
             res.status(500).send("Error Registering!");
@@ -94,8 +105,8 @@ app.post("/login", (req, res) => {
     //if user found:
     try {
         if (bcrypt.compareSync(req.body.password1, targetUser.password)) { //user is good
-            const user = {username: targetUser.username};
-            const token = jwt.sign(user, process.env.ACCESS_TOKEN, {expiresIn: "5m"});
+            const user = { username: targetUser.username };
+            const token = jwt.sign(user, process.env.ACCESS_TOKEN, { expiresIn: "5m" });
 
             res.cookie("token", token, {
                 httpOnly: true,
@@ -119,6 +130,17 @@ app.post('/logout', (req, res) => {
 app.get("/table", cookieJwtAuth, (req, res) => {
     res.sendFile(__dirname + '/table.html');
 });
+
+app.get("/adminPage", cookieJwtAuth, authRole("admin"), (req, res) => {
+    res.send("You are admin user: " + req.user.username);
+    //res.sendFile(__dirname + '/table.html');
+});
+
+app.get("/basicPage", cookieJwtAuth, authRole("basic"), (req, res) => {
+    res.send("You are basic user: " + req.user.username);
+    //res.sendFile(__dirname + '/table.html');
+});
+
 
 
 app.listen(PORT, () => {
