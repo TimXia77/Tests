@@ -10,10 +10,10 @@ module.exports = duration => (req, res, next) => {
         const cachedResponse = cache.get(key);
 
         if (cachedResponse != undefined){
-            //console.log("Cache Hit!"); //testing, remove me later
+            console.log("Cache Hit!"); //testing, remove me later
             res.send(cachedResponse);
         } else {
-            //console.log("Cache Miss!"); //testing, remove me later
+            console.log("Cache Miss!"); //testing, remove me later
 
             //Learn more?
             res.originalSend = res.send;

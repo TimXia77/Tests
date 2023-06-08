@@ -59,10 +59,10 @@ app.delete("/view-data", (req, res) => {
 });
 
 
-//Route for Cache stats (testing)
-app.get("/cache-stats", (req, res) => {       
-    return res.send(myCache.getStats());
-});
+// //Route for Cache stats (testing)
+// app.get("/cache-stats", (req, res) => {       
+//     return res.send(cache.getStats());
+// });
 
 
 app.listen(PORT, () => {
