@@ -131,6 +131,11 @@ app.get("/table", cookieJwtAuth, (req, res) => {
     res.sendFile(__dirname + '/table.html');
 });
 
+app.get("/logout", (req, res) => {
+    res.clearCookie("token");
+    res.redirect("/login");
+})
+
 app.get("/adminPage", cookieJwtAuth, authRole("admin"), (req, res) => {
     res.send("You are admin user: " + req.user.username);
     //res.sendFile(__dirname + '/table.html');
@@ -144,7 +149,7 @@ app.get("/basicPage", cookieJwtAuth, authRole("basic"), (req, res) => {
 
 
 app.listen(PORT, () => {
-    console.log(`Cache Test #1 is running on port ${PORT}.`);
+    console.log(`Running on port ${PORT}.`);
     console.log("Test this at: ");
     console.log(`http://localhost:${PORT}/register`);
     console.log(`http://localhost:${PORT}/login`);
