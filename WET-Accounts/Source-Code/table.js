@@ -21,6 +21,6 @@ function submitData(){ //For testing, prints out the current selected value of t
 }
 
 function logout(){ //For testing, prints out the current selected value of the select element.
-    
+    console.log('invalidating jwt here (similar to server)');
 }
 
